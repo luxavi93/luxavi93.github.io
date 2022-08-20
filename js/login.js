@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () =>{
         const pass = form.querySelector('#pwd')
 
         if (user.value == ''|| pass.value==''){
-            alert('Email y/o contraseña incorrecta ')
+            alert('Email y/o contraseña incorrecta')
         } else{
-            window.location.replace = "home.html"
+            window.location = "home.html"
         }
     })
 
