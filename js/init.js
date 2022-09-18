@@ -54,7 +54,7 @@ let valueEmail = JSON.parse (localStorage.getItem('email'));
 
 const node = document.getElementById('navbarNav');
 let mostrarEmail = node.appendChild(document.createTextNode(valueEmail));
-
+console.log(mostrarEmail)
 node.style.color ='#f8f9fa'
 }
 showEmail();
