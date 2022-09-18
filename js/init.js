@@ -59,7 +59,3 @@ node.style.color ='#f8f9fa'
 }
 showEmail();
 
-/*
-const catName = localStorage.getItem('catName')
-const nodeCat = document.querySelector('.categoryName');
-const showCat = nodeCat.appendChild(document.createTextNode(catName))*/

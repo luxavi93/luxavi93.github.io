@@ -1,3 +1,8 @@
+
+const catName = localStorage.getItem('catName')
+const nodeCat = document.querySelector('.categoryName');
+const showCat = nodeCat.appendChild(document.createTextNode(catName))
+
 const idCat = localStorage.getItem("catID");
 
 function mostrarCategoria(){
