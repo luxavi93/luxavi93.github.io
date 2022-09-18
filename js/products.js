@@ -1,7 +1,59 @@
-fetch (AUTOS_URL)
+const idCat = localStorage.getItem("catID");
+
+function mostrarCategoria(){
+if (idCat==101){
+    fetch (AUTOS_URL)
+    .then (response => response.json())
+    .then (data => mostrarData(data.products))
+    .catch (err=>console.log(err))
+}else if (idCat==102){
+    fetch (JUGUETES_URL)
+    .then (response => response.json())
+    .then (data => mostrarData(data.products))
+    .catch (err=>console.log(err))
+}else if (idCat==103){
+    fetch (MUEBLES_URL)
+    .then (response => response.json())
+    .then (data => mostrarData(data.products))
+    .catch (err=>console.log(err))
+}else if (idCat==104){
+    fetch (HERRAMIENTAS_URL)
+    .then (response => response.json())
+    .then (data => mostrarData(data.products))
+    .catch (err=>console.log(err))
+}else if (idCat==105){
+    fetch (COMPUTADORAS_URL)
+    .then (response => response.json())
+    .then (data => mostrarData(data.products))
+    .catch (err=>console.log(err))
+}else if (idCat==106){
+    fetch (VESTIMENTA_URL)
+    .then (response => response.json())
+    .then (data => mostrarData(data.products))
+    .catch (err=>console.log(err))
+}else if (idCat==107){
+    fetch (ELECTRODOMESTICOS_URL)
+    .then (response => response.json())
+    .then (data => mostrarData(data.products))
+    .catch (err=>console.log(err))
+}else if (idCat==108){
+    fetch (DEPORTE_URL)
+    .then (response => response.json())
+    .then (data => mostrarData(data.products))
+    .catch (err=>console.log(err))
+}else if (idCat==109){
+    fetch (CELULARES_URL)
+    .then (response => response.json())
+    .then (data => mostrarData(data.products))
+    .catch (err=>console.log(err))
+}
+}
+mostrarCategoria();
+
+/*fetch (AUTOS_URL)
 .then (response => response.json())
 .then (data => mostrarData(data.products))
-.catch (err=>console.log(err))
+.catch (err=>console.log(err))*/
 
 function mostrarData (data) {
     let products = data
@@ -26,4 +78,6 @@ function mostrarData (data) {
             document.getElementById("auto-list").innerHTML = htmlContentToAppend;
 
     } 
+    
 }
+

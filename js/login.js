@@ -3,15 +3,17 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     form.addEventListener('submit', (evento) =>{
         evento.preventDefault();
+         
 
         const user = form.querySelector('#email')
         const pass = form.querySelector('#pwd')
-
-        if (user.value == ''|| pass.value==''){
+        localStorage.setItem ('email',JSON.stringify (user.value))
+        
+        if (user.value == ''|| pass.value ==''){
             alert('Email y/o contraseña incorrecta')
-        } else{
-            window.location = "home.html"
-        }
+        } else {
+            window.location = "home.html"            
+            }
+        })
+        
     })
-
-})

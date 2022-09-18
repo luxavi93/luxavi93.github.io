@@ -7,6 +7,15 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 const AUTOS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+const JUGUETES_URL = "https://japceibal.github.io/emercado-api/cats_products/102.json";
+const MUEBLES_URL = "https://japceibal.github.io/emercado-api/cats_products/103.json";
+const HERRAMIENTAS_URL = "https://japceibal.github.io/emercado-api/cats_products/104.json";
+const COMPUTADORAS_URL = "https://japceibal.github.io/emercado-api/cats_products/105.json";
+const VESTIMENTA_URL = "https://japceibal.github.io/emercado-api/cats_products/106.json";
+const ELECTRODOMESTICOS_URL = "https://japceibal.github.io/emercado-api/cats_products/107.json";
+const DEPORTE_URL = "https://japceibal.github.io/emercado-api/cats_products/108.json";
+const CELULARES_URL = "https://japceibal.github.io/emercado-api/cats_products/109.json";
+
 
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -40,3 +49,17 @@ let getJSONData = function(url){
         return result;
     });
 }
+function showEmail(){
+let valueEmail = JSON.parse (localStorage.getItem('email'));
+
+const node = document.getElementById('navbarNav');
+let mostrarEmail = node.appendChild(document.createTextNode(valueEmail));
+
+node.style.color ='#f8f9fa'
+}
+showEmail();
+
+
+const catName = localStorage.getItem('catName')
+const nodeCat = document.querySelector('.categoryName');
+const showCat = nodeCat.appendChild(document.createTextNode(catName))
