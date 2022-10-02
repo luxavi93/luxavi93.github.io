@@ -86,3 +86,21 @@ function mostrarData (data) {
     
 }
 
+const catchProductInfo= document.getElementById("auto-list");
+
+//catchProductInfo.addEventListener("click", () =>{
+    //if(window.location = "product-info.html"){
+    //    localStorage.getItem("catID")
+  //  }
+//})
+catchProductInfo.addEventListener("click", function (e){
+  
+     
+    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
+      if(resultObj.status === "ok") {
+        localStorage.setItem("prodID", "") = resultObj.data; 
+        window.location = "product-info.html"
+      }
+    }) 
+})
+
