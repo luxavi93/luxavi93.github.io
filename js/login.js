@@ -1,3 +1,4 @@
+localStorage.clear()
 document.addEventListener('DOMContentLoaded', () =>{
     const form = document.getElementById('login');
 
@@ -18,4 +19,4 @@ document.addEventListener('DOMContentLoaded', () =>{
         
     })
 
-    localStorage.clear()
+localStorage.clear();
