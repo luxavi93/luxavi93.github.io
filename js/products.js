@@ -49,7 +49,9 @@ if (idCat==101){
 }else if (idCat==109){
     fetch (CELULARES_URL)
     .then (response => response.json())
-    .then (data => mostrarData(data.products))
+    .then (data => mostrarData(data.products),
+    
+    )
     .catch (err=>console.log(err))
 }
 }
@@ -61,7 +63,10 @@ mostrarCategoria();
 .catch (err=>console.log(err))*/
 
 function mostrarData (data) {
+    
+
     let products = data
+    console.log(data)
     let htmlContentToAppend = ""
     for (articulo of products){
        htmlContentToAppend += `
@@ -86,21 +91,10 @@ function mostrarData (data) {
     
 }
 
-const catchProductInfo= document.getElementById("auto-list");
 
-//catchProductInfo.addEventListener("click", () =>{
-    //if(window.location = "product-info.html"){
-    //    localStorage.getItem("catID")
-  //  }
-//})
-catchProductInfo.addEventListener("click", function (e){
-  
-     
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
-      if(resultObj.status === "ok") {
-        localStorage.setItem("prodID", "") = resultObj.data; 
-        window.location = "product-info.html"
-      }
-    }) 
-})
+
+function setCatID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
 

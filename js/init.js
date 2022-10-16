@@ -49,13 +49,31 @@ let getJSONData = function(url){
         return result;
     });
 }
+
 function showEmail(){
+
 let valueEmail = JSON.parse (localStorage.getItem('email'));
 
-const node = document.getElementById('navbarNav');
-let mostrarEmail = node.appendChild(document.createTextNode(valueEmail));
-console.log(mostrarEmail)
-node.style.color ='#f8f9fa'
+let node = document.getElementById('navbarNav');
+
+let showUser = document.createTextNode(valueEmail);
+let showTextUser = showUser.textContent
+
+let linkUser = node.appendChild(document.createElement("div"))
+linkUser.className = "dropdown"
+linkUser.textContent = showTextUser
+linkUser.id ="link-user"
+
+
+addDropdown = `<a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    ${showTextUser}
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+    <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+  </ul>`
+document.getElementById("link-user").innerHTML = addDropdown
 }
-showEmail();
+showEmail()
 
