@@ -22,7 +22,7 @@ function mostrarProductInfo (data) {
           <strong>Cantidades de vendidos</strong>
           <p>${data.soldCount}</p>
           <strong>Imagenes Ilustrativas</strong>
-          <div class="card-group" style="width:500px ; height:500px "
+          <div class="card-group" style="width:500px ; height:500px ">
                   <img src="${data.images[0]}" alt="" class="img-thumbnail">
           </div>
           

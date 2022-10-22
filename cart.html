@@ -36,12 +36,51 @@
     </div>
   </nav>
   <main>
+     <h1 class="text-center mt-5">Carrito de compras</h1>  
+    <div class="container" id ="cart-container">
+      
+    </div>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="row">
+        <hr>
+        <h3 class="mb-3 mt-5">Tipo de envío</h3>
+        <div class="d-block my-3">
+          <div class="custom-control custom-radio">
+            <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
+              required="">
+            <label class="custom-control-label" for="goldradio">Premium 2 a 5 días (15%)</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
+            <label class="custom-control-label" for="premiumradio">Express 5 a 8 días (7%)</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+            <label class="custom-control-label" for="standardradio">Stándard 12 a 15 días (5%)</label>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <h3 class="mb-3 mt-5">Dirección de envío</h3>
+      <div class="row">
+       <div class="col-md-3 mb-3">
+        <label for="productCostInput">Calle</label>
+        <input type="text" name="cartCostInput" class="form-control" id="cartCostInput" placeholder="" required="">
+        
+       </div>
+       <div class="col-md-3 mb-3">
+        <label for="productCostInput">Número</label>
+        <input type="number" name="cartCostInput" class="form-control" id="cartCostInput" placeholder="" required="">
+       </div>
+
+       <div class="col-md-3 mb-3">
+        <label for="productCostInput">Esquina</label>
+        <input type="text" name="productCostInput" class="form-control" id="productCostInput" placeholder="" required="" >
+       </div>
       </div>
     </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
