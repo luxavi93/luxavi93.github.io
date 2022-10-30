@@ -55,19 +55,31 @@ subtotalCart.addEventListener("change",function(e){
     
 } 
 
-var myModal = document.getElementById('myModal')
-var myInput = document.getElementById('myInput')
+const inputCredit = document.getElementById("cardradio")
+const inputTransfer = document.getElementById("transferradio")
+const numberCount = document.getElementById("countNumberInput")
+const cardNumber = document.getElementById("cardNumberInput")
+const secureCode = document.getElementById("secureCodeInput")
+const expiration = document.getElementById("expirationInput")
 
-myModal.addEventListener('shown.bs.modal', function () {
-  myInput.focus()
+inputCredit.addEventListener("click",function(){
+if (inputTransfer !== inputCredit){
+  numberCount.setAttribute("disabled","disabled")
+  cardNumber.removeAttribute("disabled")
+  secureCode.removeAttribute("disabled")
+  expiration.removeAttribute("disabled")
+}
 })
 
-
-
-
-
-
-
+inputTransfer.addEventListener("click",function(){
+  if (inputTransfer !== inputCredit){
+    cardNumber.setAttribute("disabled","disabled")
+    secureCode.setAttribute("disabled","disabled")
+    expiration.setAttribute("disabled","disabled")
+    numberCount.removeAttribute("disabled")
+  }
+  
+  })
 
 
 

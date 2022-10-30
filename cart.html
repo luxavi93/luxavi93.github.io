@@ -66,13 +66,11 @@
        <div class="col-md-3 mb-3">
         <label for="productCostInput">Calle</label>
         <input type="text" name="cartCostInput" class="form-control" id="cartCostInput" placeholder="" required="">
-        
        </div>
        <div class="col-md-3 mb-3">
         <label for="productCostInput">Número</label>
         <input type="number" name="cartCostInput" class="form-control" id="cartCostInput" placeholder="" required="">
        </div>
-
        <div class="col-md-3 mb-3">
         <label for="productCostInput">Esquina</label>
         <input type="text" name="productCostInput" class="form-control" id="productCostInput" placeholder="" required="" >
@@ -126,24 +124,45 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Formas de pago</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+        <form class="form-check" id="formcheckModal">
+          <div class="col-md-6 mb-3 ">          
+            <input id="cardradio" name="publicationType" type="radio" class="custom-control-input form-check-input" 
+              required="">
+            <label class="custom-control-label form-check-label" for="cardradio">Tarjeta de crédito</label>
           </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+          <hr>
+          <div class="col-md-6 mb-3">
+            <label for="cardNumber">Número de tarjeta</label>
+            <input type="number" name="cardNumberInput" class="form-control" id="cardNumberInput" placeholder="" required="">
+           </div>
+           <div class="col-md-3 mb-3">
+            <label for="secureCode">Código de seguridad</label>
+            <input type="number" name="secureCodeInput" class="form-control" id="secureCodeInput" placeholder="" required="">
+           </div>
+           <div class="col-md-6 mb-3">
+            <label for="expiration">Vencimiento(MM/AA)</label>
+            <input type="text" name="expirationInput" class="form-control" id="expirationInput" placeholder="" required="" >
+           </div>
+           <div class="col-md-6 mb-3  ">
+            <input id="transferradio" name="publicationType" type="radio" class="custom-control-input form-check-input" 
+              required="">
+            <label class="custom-control-label form-check-label" for="transferradio">Transferencia bancaria</label>
           </div>
+          <hr>
+          <div class="col-md-6 mb-3">
+            <label for="countNumber">Número de cuenta</label>
+            <input type="number" name="countNumberInput" class="form-control" id="countNumberInput" placeholder="" required="">
+           </div>
+
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        
+        <button type="button" class="btn btn-primary">Cerrar</button>
       </div>
     </div>
   </div>
