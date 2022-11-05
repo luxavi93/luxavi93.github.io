@@ -46,13 +46,13 @@
         <h3 class="mb-3 mt-5">Tipo de envío</h3>
         <div class="d-block my-3">
           <div class="custom-control custom-radio">
-            <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
+            <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked=""
               required="">
-            <label class="custom-control-label" for="goldradio">Premium 2 a 5 días (15%)</label>
+            <label class="custom-control-label" for="premiumradio">Premium 2 a 5 días (15%)</label>
           </div>
           <div class="custom-control custom-radio">
-            <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
-            <label class="custom-control-label" for="premiumradio">Express 5 a 8 días (7%)</label>
+            <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required="">
+            <label class="custom-control-label" for="expressradio">Express 5 a 8 días (7%)</label>
           </div>
           <div class="custom-control custom-radio">
             <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
@@ -84,14 +84,14 @@
                 <h6 class="my-0">Subtotal</h6>
                 <small class="text-muted">Costo unitario del producto por cantidad</small>
               </div>
-              <span class="text-muted" id="productCostText">-</span>
+              <span class="text-muted" id="productCostText"></span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">Costo de envío</h6>
                 <small class="text-muted">Según el tipo de envío</small>
               </div>
-              <span class="text-muted" id="comissionText">-</span>
+              <span class="text-muted" id="comissionText"></span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total ($)</span>
@@ -125,7 +125,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Formas de pago</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      
       </div>
       <div class="modal-body">
         <form class="form-check" id="formcheckModal">
@@ -162,7 +162,7 @@
       </div>
       <div class="modal-footer">
         
-        <button type="button" class="btn btn-primary">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
       </div>
     </div>
   </div>
