@@ -26,23 +26,7 @@ function mostrarProductInfo (data) {
                   <img src="${data.images[0]}" alt="" class="img-thumbnail">
           </div>
           
-          <h3>Comentar</h3>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Tu opinión</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="width:30%"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label" 
-            <button type="button" class="btn btn-primary mb-4" >Tu puntuación</label>
-            <select class="form-select mb-4" aria-label="Default select example" style="width:30%">
-              <option selected value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            <button type="button" class="btn btn-primary mb-4" style="width:10%">Enviar</button>
-          </div>
+          
             `
             document.getElementById("product-info").innerHTML = htmlContentToAppend;    
 }
@@ -76,4 +60,30 @@ function setRelatedProductsID(id) {
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
 }
+
+/*let commentSubmit = document.getElementById("commentSubmit")
+let array =[];
+function showCommments(){
+  let htmlContentToAppend="";
+  if (localStorage.getItem("list")){
+    array = JSON.parse(localStorage.getItem("list"))
+    array.forEach(element => {
+      htmlContentToAppend += `<li class="list-group-item">${element}</li>`
+    });
+  } else {
+    localStorage.setItem("list", "");
+  }
+
+}
+
+document.addEventListener("DOMContentLoaded",function(e){
+commentSubmit.addEventListener("click", function(e){
+  e.preventDefault()
+  console.log(commentSubmit)
+
+})
+})*/
+
+const productComments = PRODUCT_INFO_COMMENTS_URL + obtenerID + EXT_TYPE
+console.log(productComments)
 

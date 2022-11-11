@@ -45,24 +45,24 @@ function mostrarData (data) {
     }
 } 
 let productCost = 0
-let productCount = 0
 let comissionPercentage = 0.15
+let DOLLAR_CURRENCY = "USD"
 
 function updateCostCart(){
   let unitProductCostHTML = document.getElementById("productCostText");
     let comissionCostHTML = document.getElementById("comissionText");
     let totalCostHTML = document.getElementById("totalCostText");
 
-    let unitCostToShow =  articulo.unitCost
-    let comissionToShow = Math.round((comissionPercentage * 100))
-    let totalCostToShow =  ((Math.round(productCost * comissionPercentage * 100) / 100) + parseInt(productCost));
+    let unitCostToShow = DOLLAR_CURRENCY +" "+ subtotal_modified
+    let comissionToShow = DOLLAR_CURRENCY +" "+ (Math.round(comissionPercentage * subtotal_modified))
+    let totalCostToShow =  DOLLAR_CURRENCY +" "+ ((Math.round(comissionPercentage * subtotal_modified )) + parseInt(subtotal_modified));
 
     unitProductCostHTML.innerHTML = unitCostToShow;
     comissionCostHTML.innerHTML = comissionToShow;
     totalCostHTML.innerHTML = totalCostToShow;
 
 }
-
+ 
 
 document.addEventListener("DOMContentLoaded",function(e){
   getJSONData(CART_25801_ID).then(function(resultObj){
@@ -73,32 +73,36 @@ document.addEventListener("DOMContentLoaded",function(e){
     }
     
   let subtotalCart = document.getElementById("productCountInput")
-
-
   subtotalCart.addEventListener("change",function(e){
   
-   subtotal_modified = subtotalCart.value * articulo.unitCost
-    //document.getElementById("subtotal").innerHTML = articulo.currency + " " + subtotal_modified
-    //document.getElementById("productCostText").innerHTML = articulo.currency + " " +subtotal_modified;
-   
-  
-    document.getElementById("premiumradio").addEventListener("mouseover", function(){
-      
-      updateCostCart()
-    });
+     subtotal_modified = subtotalCart.value * articulo.unitCost
+      document.getElementById("subtotal").innerHTML = articulo.currency + " " + subtotal_modified
+      document.getElementById("productCostText").innerHTML = articulo.currency + " " +subtotal_modified;
+     productCost= this.value
+     updateCostCart()
     
-    document.getElementById("expressradio").addEventListener("mouseover", function(){
       
-      updateCostCart()
-    });
     
-    document.getElementById("standardradio").addEventListener("load", function(){
-      let comissionPercentage = 0.05;
-      comission.innerHTML = articulo.currency + " " +(comissionPercentage * subtotal_modified)
-    });
+  //    comission.innerHTML = articulo.currency + " " +(comissionPercentage * subtotal_modified)
+    })
+
+ 
+  document.getElementById("premiumradio").addEventListener("change", function(){
+    comissionPercentage = 0.15;
+    updateCostCart()
+  });
   
+  document.getElementById("expressradio").addEventListener("change", function(){
+    comissionPercentage = 0.07;
+    updateCostCart()
+  });
   
-  })
+  document.getElementById("standardradio").addEventListener("change", function(){
+    comissionPercentage = 0.05;
+    updateCostCart()
+    
+  });
+  
   //modal mode
     const inputCredit = document.getElementById("cardradio")
     const inputTransfer = document.getElementById("transferradio")
@@ -127,8 +131,6 @@ document.addEventListener("DOMContentLoaded",function(e){
       })
 
   });
- 
-  
   
 })
 
