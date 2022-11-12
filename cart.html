@@ -36,11 +36,12 @@
     </div>
   </nav>
   <main>
-     <h1 class="text-center mt-5">Carrito de compras</h1>  
-    <div class="container" id ="cart-container">
+   <h1 class="text-center mt-5">Carrito de compras</h1>  
+    <form class="needs-validation" id="cart-info">
+      <div class="container" id ="cart-container">
       
-    </div>
-    <div class="container">
+      </div>
+       <div class="container">
       <div class="row">
         <hr>
         <h3 class="mb-3 mt-5">Tipo de envío</h3>
@@ -64,16 +65,25 @@
       <h3 class="mb-3 mt-5">Dirección de envío</h3>
       <div class="row">
        <div class="col-md-3 mb-3">
-        <label for="productCostInput">Calle</label>
-        <input type="text" name="cartCostInput" class="form-control" id="cartCostInput" placeholder="" required="">
+        <label for="streetInput">Calle</label>
+        <input type="text" name="streetInput" class="form-control" id="streetInput" placeholder="" value="">
+         <div class="invalid-feedback">
+          Ingresa una calle
+         </div>
        </div>
        <div class="col-md-3 mb-3">
-        <label for="productCostInput">Número</label>
-        <input type="number" name="cartCostInput" class="form-control" id="cartCostInput" placeholder="" required="">
+        <label for="numberInput">Número</label>
+        <input type="number" name="numberInput" class="form-control" id="numberInput" placeholder="" value="">
+        <div class="invalid-feedback">
+          Ingresa un número
+        </div>
        </div>
        <div class="col-md-3 mb-3">
-        <label for="productCostInput">Esquina</label>
-        <input type="text" name="productCostInput" class="form-control" id="productCostInput" placeholder="" required="" >
+        <label for="cornerInput">Esquina</label>
+        <input type="text" name="cornerInput" class="form-control" id="cornerInput" placeholder="" value="" >
+        <div class="invalid-feedback">
+          Ingresa una esquina
+        </div>
        </div>
       </div>
       <hr class="mb-4">
@@ -99,13 +109,14 @@
             </li>
           </ul>
           <h3 class="mb-3">Formas de pago</h3>
+          <span id="selectCard">No has seleccionado</span>
           <div class="row">
             <button type="button" class="m-1 btn btn-link" data-bs-toggle="modal"
               data-bs-target="#contidionsModal">Seleccionar</button>
           </div>
           <button class="btn btn-primary btn-lg d-flex justify-content-md-center" type="submit">Finalizar compra</button>
     </div>
-
+  </form>
   </main>
 
   <footer class="text-muted">
