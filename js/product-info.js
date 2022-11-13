@@ -1,11 +1,6 @@
 const obtenerID = localStorage.getItem("prodID");
 const productInfo = PRODUCT_INFO_URL + obtenerID + EXT_TYPE;
 
-fetch (productInfo)
-.then (response => response.json())
-.then (data => mostrarProductInfo(data))
-.catch (err=>console.log(err))
-
 
 function mostrarProductInfo (data) {    
     let htmlContentToAppend = ""     
@@ -31,10 +26,6 @@ function mostrarProductInfo (data) {
             document.getElementById("product-info").innerHTML = htmlContentToAppend;    
 }
 
-fetch (productInfo)
-.then (response => response.json())
-.then (data => mostrarProductosRelacionados (data.relatedProducts))
-.catch (err=>console.log(err))
 
 function mostrarProductosRelacionados (data) {
     let products = data
@@ -86,4 +77,20 @@ commentSubmit.addEventListener("click", function(e){
 
 const productComments = PRODUCT_INFO_COMMENTS_URL + obtenerID + EXT_TYPE
 console.log(productComments)
+
+
+document.addEventListener("DOMContentLoaded",function(e){
+  getJSONData(productInfo).then(function(resultObj){
+      if (resultObj.status === "ok"){
+         mostrarProductInfo(resultObj.data)
+      }
+  })
+  getJSONData(productInfo).then(function(resultObj){
+    if (resultObj.status === "ok"){
+       mostrarProductosRelacionados (resultObj.data.relatedProducts)
+    }
+})
+
+
+})
 
