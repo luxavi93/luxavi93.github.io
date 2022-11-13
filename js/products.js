@@ -57,14 +57,8 @@ if (idCat==101){
 }
 mostrarCategoria();
 
-/*fetch (AUTOS_URL)
-.then (response => response.json())
-.then (data => mostrarData(data.products))
-.catch (err=>console.log(err))*/
-
 function mostrarData (data) {
     
-
     let products = data
     console.log(data)
     let htmlContentToAppend = ""

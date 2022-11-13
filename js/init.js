@@ -50,20 +50,23 @@ let getJSONData = function(url){
     });
 }
 
+//Función para mostrar email en la barra de navegación 
+
 function showEmail(){
 
-let valueEmail = JSON.parse (localStorage.getItem('email'));
+// Obtengo email desde el login y creo un div en la barra que contenga el email
 
-let node = document.getElementById('navbarNav');
+  let valueEmail = JSON.parse (localStorage.getItem('email'));
+  let node = document.getElementById('navbarNav');
+  let showUser = document.createTextNode(valueEmail);
+  let showTextUser = showUser.textContent;
 
-let showUser = document.createTextNode(valueEmail);
-let showTextUser = showUser.textContent
+  let linkUser = node.appendChild(document.createElement("div"));
+  linkUser.className = "dropdown";
+  linkUser.textContent = showTextUser;
+  linkUser.id ="link-user";
 
-let linkUser = node.appendChild(document.createElement("div"))
-linkUser.className = "dropdown"
-linkUser.textContent = showTextUser
-linkUser.id ="link-user"
-
+// Genero en el div un dropdown con las redirecciones a las páginas correspondientes 
 
 addDropdown = `<a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
     ${showTextUser}
@@ -75,5 +78,8 @@ addDropdown = `<a class="btn btn-dark dropdown-toggle" href="#" role="button" id
   </ul>`
 document.getElementById("link-user").innerHTML = addDropdown
 }
+
+//Finalmente llamo a la función
+
 showEmail()
 

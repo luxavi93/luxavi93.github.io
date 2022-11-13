@@ -1,9 +1,6 @@
 const CART_25801_ID= CART_INFO_URL + 25801 +  EXT_TYPE;
 
-/*fetch (CART_25801_ID)
-.then (response => response.json())
-.then (data => mostrarData(data.articles))
-.catch (err=>console.log(err))*/
+// La función mostrarData crea una tabla con los elementos procedentes del json 
 
 function mostrarData (data) {
   
@@ -12,8 +9,7 @@ function mostrarData (data) {
     let htmlContentToAppend = ""
     for (articulo of products){
        htmlContentToAppend += `
-            <h3>Articulos a comprar</h3>
-            
+<h3>Articulos a comprar</h3>
 <div class="table-responsive">
     <table class="table">
       <thead>
@@ -41,15 +37,16 @@ function mostrarData (data) {
      </tbody>
     </table>
 </div>
-            
             `
-            document.getElementById("cart-container").innerHTML = htmlContentToAppend;
-            
+            document.getElementById("cart-container").innerHTML = htmlContentToAppend;  
     }
 } 
+
 let productCost = 0
 let comissionPercentage = 0.15
 let DOLLAR_CURRENCY = "USD"
+
+// La funcion updateCostCart actualiza los datos del carrito
 
 function updateCostCart(){
   let unitProductCostHTML = document.getElementById("productCostText");
@@ -70,24 +67,25 @@ function updateCostCart(){
 document.addEventListener("DOMContentLoaded",function(e){
   getJSONData(CART_25801_ID).then(function(resultObj){
     if (resultObj.status === "ok"){
-        currentCategoriesArray = 
        mostrarData(resultObj.data.articles)
-      
     }
 
-    //Funcion para modificar el subtotal del carrito y actualizarlo en tabla de costos
+//Funcion para modificar el subtotal del carrito y actualizarlo en tabla de costos
+
   let subtotalCart = document.getElementById("productCountInput")
   subtotalCart.addEventListener("change",function(e){
   
-     subtotal_modified = subtotalCart.value * articulo.unitCost
-      document.getElementById("subtotal").innerHTML = articulo.currency + " " + subtotal_modified
+     subtotal_modified = subtotalCart.value * articulo.unitCost;
+      document.getElementById("subtotal").innerHTML = articulo.currency + " " + subtotal_modified;
       document.getElementById("productCostText").innerHTML = articulo.currency + " " +subtotal_modified;
-     productCost= this.value
+     productCost= this.value;
      updateCostCart()
     
     })
   })
+
  //Seleccion del input radio del tipo de envío y actualizarlo en tabla de costos
+
   document.getElementById("premiumradio").addEventListener("change", function(){
     comissionPercentage = 0.15;
     updateCostCart()
@@ -104,7 +102,8 @@ document.addEventListener("DOMContentLoaded",function(e){
     
   });
   
-  //Realizo funciones para que el modal seleccione el tipo de pago y desactive la opcion no activa
+//Realizo funciones para que el modal seleccione el tipo de pago y desactive la opción no activa
+
     const inputCredit = document.getElementById("cardradio")
     const inputTransfer = document.getElementById("transferradio")
     const numberCount = document.getElementById("countNumberInput")
@@ -139,6 +138,7 @@ document.addEventListener("DOMContentLoaded",function(e){
   ;
 
 //Genero validaciones necesarias para comprar con exito
+
 let cartForm = document.getElementById("cart-info")
 cartForm.addEventListener("submit", function(e){
 
@@ -151,31 +151,28 @@ cartForm.addEventListener("submit", function(e){
   let seleccionar = document.getElementById("selectCard") 
   let infoMissing = false;
 
-console.log(seleccionar.textContent)
+//Quito las clases que marcan como inválidos
 
-  //Quito las clases que marcan como inválidos
   streetInput.classList.remove('is-invalid');
   numberInput.classList.remove('is-invalid');
   cornerInput.classList.remove('is-invalid');
   seleccionar.classList.remove('is-invalid');
-  //Se realizan los controles necesarios,
-  //En este caso se controla que se haya ingresado la calle, el numero y la esquina del envío
+
+// Se controla que se haya ingresado la calle, el numero, la esquina del envío 
+// Así como la cantidad del carrito sea mayor a 0
  
-  //Consulto por la calle del envío
   if (streetInput.value === "")
   {
       streetInput.classList.add('is-invalid');
       infoMissing = true;
   }
   
-  //Consulto por el número de envío
   if (numberInput.value === "")
   {
       numberInput.classList.add('is-invalid');
       infoMissing = true;
   }
 
-  //Consulto por la esquina de calle del envío
   if (cornerInput.value === "")
   {
       cornerInput.classList.add('is-invalid');
