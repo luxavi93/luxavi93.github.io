@@ -106,32 +106,47 @@ document.addEventListener("DOMContentLoaded",function(e){
   
 //Realizo funciones para que el modal seleccione el tipo de pago y desactive la opción no activa
 
-function modalInputs(){
-    const inputCredit = document.getElementById("cardradio")
-    const inputTransfer = document.getElementById("transferradio")
-    const numberCount = document.getElementById("countNumberInput")
-    const cardNumber = document.getElementById("cardNumberInput")
-    const secureCode = document.getElementById("secureCodeInput")
-    const expiration = document.getElementById("expirationInput")
-    let selectCard = document.getElementById("selectCard")
-    let infoMissing = false;
-    
-    cardNumber.classList.remove("is-invalid")
-    secureCode.classList.remove("is-invalid")
-    expiration.classList.remove("is-invalid")
+
+    const inputCredit = document.getElementById("cardradio");
+    const inputTransfer = document.getElementById("transferradio");
+    const numberCount = document.getElementById("countNumberInput");
+    const cardNumber = document.getElementById("cardNumberInput");
+    const secureCode = document.getElementById("secureCodeInput");
+    const expiration = document.getElementById("expirationInput");
+    let selectCard = document.getElementById("selectCard");
+    let closeModal = document.getElementById('closeModal')
+
 
     inputCredit.addEventListener("click",function(e){
       
-      if (inputTransfer !== inputCredit){
+      if (inputTransfer !== inputCredit){  
         numberCount.setAttribute("disabled","disabled");
         cardNumber.removeAttribute("disabled");
         secureCode.removeAttribute("disabled");
         expiration.removeAttribute("disabled");
        selectCard.innerHTML ="Tarjeta de credito"
       }
-      })
-      
-    inputTransfer.addEventListener("click",function(e){
+
+       cardNumber.addEventListener("change",()=>{ 
+      if(cardNumber.value !=="" ){
+        closeModal.removeAttribute('disabled')  
+         }
+        })
+
+  secureCode.addEventListener("change",()=>{ 
+      if(cardNumber.value !=="" ){
+      closeModal.removeAttribute('disabled')  
+         }
+       }) 
+
+   expiration.addEventListener("change",()=>{ 
+      if(expiration.value !=="" ){
+      closeModal.removeAttribute('disabled')  
+         }
+       }) 
+    })
+
+    inputTransfer.addEventListener("click",function(){
       
         if (inputTransfer !== inputCredit){
           cardNumber.setAttribute("disabled","disabled")
@@ -139,13 +154,13 @@ function modalInputs(){
           expiration.setAttribute("disabled","disabled")
           numberCount.removeAttribute("disabled")
           selectCard.innerHTML ="Transferencia bancaria"
-        
-            }
-            })
-        
-        
-      }
-      modalInputs()
+
+            }  
+          numberCount.addEventListener('change',function(e){
+           closeModal.removeAttribute('disabled')  
+              })
+      }) 
+
 //Genero validaciones necesarias para comprar con exito
 
 let cartForm = document.getElementById("cart-info")
@@ -158,7 +173,7 @@ cartForm.addEventListener("submit", function(e){
   let numberInput = document.getElementById("numberInput");
   let cornerInput = document.getElementById("cornerInput");
   let seleccionar = document.getElementById("selectCard") 
-  infoMissing = false;
+  infoMissing = false
 
 //Quito las clases que marcan como inválidos
 
@@ -202,36 +217,6 @@ cartForm.addEventListener("submit", function(e){
       infoMissing = true;
   }
 
-  
-  
-/* function validateModal(){
-numberCount.classList.remove("is-invalid")
-cardNumber.classList.remove("is-invalid")
-secureCode.classList.remove("is-invalid")
-expiration.classList.remove("is-invalid")
-if (numberCount.value === "")
-  {
-      numberCount.classList.add('is-invalid');
-      infoMissing = true;
-  }
-  if (cardNumber.value === "")
-  {
-      cardNumber.classList.add('is-invalid');
-      infoMissing = true;
-  }
-  if (secureCode.value === "")
-  {
-      secureCode.classList.add('is-invalid');
-      infoMissing = true;
-  }
-  if (expiration.value === "")
-  {
-      expiration.classList.add('is-invalid');
-      infoMissing = true;
-  }
-
-  }*/
-  
   if(!infoMissing)
   {
       //Aquí ingresa si pasó los controles, irá a enviar

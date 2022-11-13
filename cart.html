@@ -138,15 +138,15 @@
     <span id="resultSpan"></span>
   </div>
 
-<div class="modal fade" id="contidionsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="contidionsModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Formas de pago</h5>
+        <h5 class="modal-title">Formas de pago</h5>
       
       </div>
       <div class="modal-body">
-        <form class="form-check needs-validation" id="formcheckModal">
+        <form class="form-check was-validated" id="formcheckModal" >
           <div class="col-md-6 mb-3 ">          
             <input id="cardradio" name="publicationType" type="radio" class="custom-control-input form-check-input" 
               required="">
@@ -155,21 +155,21 @@
           <hr>
           <div class="col-md-6 mb-3">
             <label for="cardNumber">Número de tarjeta</label>
-            <input type="number" required name="cardNumberInput" class="form-control" id="cardNumberInput" placeholder="" min="0" value="">
+            <input type="number" required name="cardNumberInput" class="form-control" id="cardNumberInput" min="0" value="" disabled>
             <div class="invalid-feedback">
               Ingresa número de tarjeta
             </div>
           </div>
            <div class="col-md-3 mb-3">
             <label for="secureCode">Código de seguridad</label>
-            <input type="tel" maxlength="3" required name="secureCodeInput" class="form-control" id="secureCodeInput" placeholder="" min="0" value="">
+            <input type="tel" maxlength="3" required name="secureCodeInput" class="form-control" id="secureCodeInput" min="0" value="" disabled>
             <div class="invalid-feedback">
               Ingresa codigo
             </div>
           </div>
            <div class="col-md-6 mb-3">
             <label for="expiration">Vencimiento(MM/AA)</label>
-            <input type="date" required name="expirationInput" class="form-control" id="expirationInput" placeholder="" min="0" value="" >
+            <input type="date" required name="expirationInput" class="form-control" id="expirationInput"  min="0" value="" disabled >
             <div class="invalid-feedback">
               Ingresa vencimiento
             </div>
@@ -182,7 +182,7 @@
           <hr>
           <div class="col-md-6 mb-3">
             <label for="countNumber">Número de cuenta</label>
-            <input type="number" required name="countNumberInput" class="form-control" id="countNumberInput" placeholder="" min="0" value="">
+            <input type="number" required name="countNumberInput" class="form-control " id="countNumberInput"  min="0" value=""disabled>
             <div class="invalid-feedback">
               Ingresa numero de cuenta
             </div>
@@ -192,7 +192,7 @@
       </div>
       <div class="modal-footer">
         
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" id="closeModal" disabled>Cerrar</button>
       </div>
     </div>
   </div>
