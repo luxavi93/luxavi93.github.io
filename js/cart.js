@@ -1,32 +1,32 @@
 const CART_25801_ID= CART_INFO_URL + 25801 +  EXT_TYPE;
 
-// La función mostrarData crea una tabla con los elementos procedentes del json 
+// La función mostrarData crea una tabla con los elementos procedentes del json del producto 25801
 
 function mostrarData (data) {
   
-    let products = data
-    let subtotal_modified =""
-    let htmlContentToAppend = ""
-    for (articulo of products){
-       htmlContentToAppend += `
-<h3>Articulos a comprar</h3>
-<div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-         <th scope="col"></th>
-         <th scope="col">Nombre</th>
-         <th scope="col">Costo</th>
-         <th scope="col">Cantidad</th>
-         <th scope="col">Subtotal</th>
-        </tr>
-      </thead>
+  let products = data
+  let subtotal_modified =""
+  let htmlContentToAppend = ""
+  for (articulo of products){
+    htmlContentToAppend += `
+    <h3>Articulos a comprar</h3>
+      <div class="table-responsive">
+       <table class="table">
+         <thead>
+           <tr>
+             <th scope="col"></th>
+             <th scope="col">Nombre</th>
+             <th scope="col">Costo</th>
+             <th scope="col">Cantidad</th>
+             <th scope="col">Subtotal</th>
+           </tr>
+         </thead>
       <tbody>
        <tr >
          <th scope="row-5"><img src="${articulo.image}" alt="..." class="img-thumbnail" style="width:100px ; height:50px"></th>
          <td>${articulo.name}</td>
          <td>${articulo.currency} ${articulo.unitCost}</td>
-         <td><input type="number" name="productCountInput" class="form-control" id="productCountInput" style="width:100px ; height:20px" value="0"
+         <td><input type="number" required name="productCountInput" class="form-control" id="productCountInput" style="width:100px ; height:20px" value="0"
           min="0">   
           <div class="invalid-feedback">
           Ingrese mayor a 0
@@ -42,9 +42,9 @@ function mostrarData (data) {
     }
 } 
 
-let productCost = 0
-let comissionPercentage = 0.15
-let DOLLAR_CURRENCY = "USD"
+let productCost = 0;
+let comissionPercentage = 0.15;
+let DOLLAR_CURRENCY = "USD";
 
 // La funcion updateCostCart actualiza los datos del carrito
 
@@ -53,7 +53,7 @@ function updateCostCart(){
     let comissionCostHTML = document.getElementById("comissionText");
     let totalCostHTML = document.getElementById("totalCostText");
 
-    let unitCostToShow = DOLLAR_CURRENCY +" "+ subtotal_modified
+    let unitCostToShow = DOLLAR_CURRENCY +" "+ subtotal_modified;
     let comissionToShow = DOLLAR_CURRENCY +" "+ (Math.round(comissionPercentage * subtotal_modified))
     let totalCostToShow =  DOLLAR_CURRENCY +" "+ ((Math.round(comissionPercentage * subtotal_modified )) + parseInt(subtotal_modified));
 
@@ -63,6 +63,7 @@ function updateCostCart(){
 
 }
  
+// 
 
 document.addEventListener("DOMContentLoaded",function(e){
   getJSONData(CART_25801_ID).then(function(resultObj){
@@ -80,6 +81,7 @@ document.addEventListener("DOMContentLoaded",function(e){
       document.getElementById("productCostText").innerHTML = articulo.currency + " " +subtotal_modified;
      productCost= this.value;
      updateCostCart()
+     productCountInput.classList.remove('is-invalid');
     
     })
   })
@@ -104,6 +106,7 @@ document.addEventListener("DOMContentLoaded",function(e){
   
 //Realizo funciones para que el modal seleccione el tipo de pago y desactive la opción no activa
 
+function modalInputs(){
     const inputCredit = document.getElementById("cardradio")
     const inputTransfer = document.getElementById("transferradio")
     const numberCount = document.getElementById("countNumberInput")
@@ -111,32 +114,38 @@ document.addEventListener("DOMContentLoaded",function(e){
     const secureCode = document.getElementById("secureCodeInput")
     const expiration = document.getElementById("expirationInput")
     let selectCard = document.getElementById("selectCard")
+    let infoMissing = false;
     
-    inputCredit.addEventListener("click",function(){
+    cardNumber.classList.remove("is-invalid")
+    secureCode.classList.remove("is-invalid")
+    expiration.classList.remove("is-invalid")
+
+    inputCredit.addEventListener("click",function(e){
+      
       if (inputTransfer !== inputCredit){
-        numberCount.setAttribute("disabled","disabled")
-        cardNumber.removeAttribute("disabled")
-        secureCode.removeAttribute("disabled")
-        expiration.removeAttribute("disabled")
+        numberCount.setAttribute("disabled","disabled");
+        cardNumber.removeAttribute("disabled");
+        secureCode.removeAttribute("disabled");
+        expiration.removeAttribute("disabled");
        selectCard.innerHTML ="Tarjeta de credito"
-       // validateModal()
       }
       })
       
-      inputTransfer.addEventListener("click",function(){
+    inputTransfer.addEventListener("click",function(e){
+      
         if (inputTransfer !== inputCredit){
           cardNumber.setAttribute("disabled","disabled")
           secureCode.setAttribute("disabled","disabled")
           expiration.setAttribute("disabled","disabled")
           numberCount.removeAttribute("disabled")
           selectCard.innerHTML ="Transferencia bancaria"
-          //validateModal()
-        }
         
-        })
-    
-  ;
-
+            }
+            })
+        
+        
+      }
+      modalInputs()
 //Genero validaciones necesarias para comprar con exito
 
 let cartForm = document.getElementById("cart-info")
@@ -149,7 +158,7 @@ cartForm.addEventListener("submit", function(e){
   let numberInput = document.getElementById("numberInput");
   let cornerInput = document.getElementById("cornerInput");
   let seleccionar = document.getElementById("selectCard") 
-  let infoMissing = false;
+  infoMissing = false;
 
 //Quito las clases que marcan como inválidos
 
@@ -180,7 +189,7 @@ cartForm.addEventListener("submit", function(e){
   }
 
   //Consulto por la cantidad del producto mayor a 0
-  if (productCountInput.value <=0)
+  if (productCountInput.value <= 0)
   {
     productCountInput.classList.add('is-invalid');
       infoMissing = true;
@@ -193,7 +202,7 @@ cartForm.addEventListener("submit", function(e){
       infoMissing = true;
   }
 
-
+  
   
 /* function validateModal(){
 numberCount.classList.remove("is-invalid")
@@ -227,27 +236,28 @@ if (numberCount.value === "")
   {
       //Aquí ingresa si pasó los controles, irá a enviar
       //la solicitud para crear la publicación.
-      let MSG = "kike"
-      getJSONData(CART_INFO_URL).then(function(resultObj){
-          let msgToShowHTML = document.getElementById("resultSpan");
-          let msgToShow = "";
+      
+      getJSONData(CART_BUY_URL).then(function(resultObj){
+        let msgToShowHTML = document.getElementById('resultSpan');
+        let msgToShow = '';
+        let MSG = 'Falta rellenar campos'
 
-          //Si la publicación fue exitosa, devolverá mensaje de éxito,
-          //de lo contrario, devolverá mensaje de error.
-          //FUNCIONALIDAD NO IMPLEMENTADA
-          if (resultObj.status === 'ok')
-          {
-              msgToShow = MSG;
-              document.getElementById("alertResult").classList.add('alert-primary');
-          }
-          else if (resultObj.status === 'error')
-          {
-              msgToShow = MSG;
-              document.getElementById("alertResult").classList.add('alert-primary');
-          }
+        //Si la publicación fue exitosa, devolverá mensaje de éxito,
+        //de lo contrario, devolverá mensaje de error.
+        //FUNCIONALIDAD NO IMPLEMENTADA
+        if (resultObj.status === 'ok')
+        {
+            msgToShow = resultObj.data.msg;
+            document.getElementById("alertResult").classList.add('alert-success');
+        }
+        else if (resultObj.status === 'error')
+        {
+            msgToShow = MSG;
+            document.getElementById("alertResult").classList.add('alert-danger');
+        }
 
-          msgToShowHTML.innerHTML = msgToShow;
-          document.getElementById("alertResult").classList.add("show");
+        msgToShowHTML.innerHTML = msgToShow;
+        document.getElementById("alertResult").classList.add("show");
       });
   }
 }); 
