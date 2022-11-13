@@ -52,7 +52,7 @@
   </nav>
   <main>
     <div class="container">
-      <form id="form-check" class="row mt-4">
+      <form id="profile-info" class="row mt-4 needs-validation">
         <div class="col">
           <h1 class="mb-3 text-center">Perfil</h1>
           <hr class="my-4">
@@ -60,32 +60,42 @@
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="primerNombre" class="form-label">Primer nombre</label>
-              <input type="text" class="form-control" id="primerNombre">
+              <input type="text" class="form-control" id="firstName">
+              <div class="invalid-feedback">
+                Ingresa un nombre
+              </div>
             </div>
 
             <div class="col-sm-6">
               <label for="segundoNombre" class="form-label">Segundo nombre</label>
-              <input type="text" class="form-control" id="segundoNombre">
+              <input type="text" class="form-control" id="secondName">
             </div>
 
             <div class="col-sm-6">
               <label for="primerApellido" class="form-label">Primer apellido</label>
-              <input type="text" class="form-control" id="primerApellido">
+              <input type="text" class="form-control" id="firstSurname">
+              <div class="invalid-feedback">
+                Ingresa un apellido
+              </div>
             </div>
+
 
             <div class="col-sm-6">
               <label for="segundoApellido" class="form-label">Segundo apellido</label>
-              <input type="text" class="form-control" id="segundoApellido">
+              <input type="text" class="form-control" id="secondSurname">
             </div>
             
             <div class="col-sm-6">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" value="">
+              <div class="invalid-feedback">
+                Ingresa un email
+              </div>
             </div>
 
             <div class="col-sm-6">
               <label for="telefono" class="form-label">Telefóno de contacto</label>
-              <input type="tel" class="form-control" id="telefono">
+              <input type="tel" class="form-control" id="phone">
             </div>
             
             <hr class="my-8">
