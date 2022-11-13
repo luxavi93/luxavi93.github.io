@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded",function(e){
      updateCostCart()
     
     })
-
+  })
  //Seleccion del input radio del tipo de envío y actualizarlo en tabla de costos
   document.getElementById("premiumradio").addEventListener("change", function(){
     comissionPercentage = 0.15;
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded",function(e){
     
   });
   
-  //Realizo funciones para que el modal seleccione el tipo de pago
+  //Realizo funciones para que el modal seleccione el tipo de pago y desactive la opcion no activa
     const inputCredit = document.getElementById("cardradio")
     const inputTransfer = document.getElementById("transferradio")
     const numberCount = document.getElementById("countNumberInput")
@@ -112,29 +112,31 @@ document.addEventListener("DOMContentLoaded",function(e){
     const secureCode = document.getElementById("secureCodeInput")
     const expiration = document.getElementById("expirationInput")
     let selectCard = document.getElementById("selectCard")
-
-    inputCredit.addEventListener("click",function(){
-    if (inputTransfer !== inputCredit){
-      numberCount.setAttribute("disabled","disabled")
-      cardNumber.removeAttribute("disabled")
-      secureCode.removeAttribute("disabled")
-      expiration.removeAttribute("disabled")
-      selectCard.innerHTML ="Tarjeta de credito"
-    }
-    })
     
-    inputTransfer.addEventListener("click",function(){
+    inputCredit.addEventListener("click",function(){
       if (inputTransfer !== inputCredit){
-        cardNumber.setAttribute("disabled","disabled")
-        secureCode.setAttribute("disabled","disabled")
-        expiration.setAttribute("disabled","disabled")
-        numberCount.removeAttribute("disabled")
-        selectCard.innerHTML ="Transferencia bancaria"
+        numberCount.setAttribute("disabled","disabled")
+        cardNumber.removeAttribute("disabled")
+        secureCode.removeAttribute("disabled")
+        expiration.removeAttribute("disabled")
+       selectCard.innerHTML ="Tarjeta de credito"
+       // validateModal()
       }
-      
       })
-
-  });
+      
+      inputTransfer.addEventListener("click",function(){
+        if (inputTransfer !== inputCredit){
+          cardNumber.setAttribute("disabled","disabled")
+          secureCode.setAttribute("disabled","disabled")
+          expiration.setAttribute("disabled","disabled")
+          numberCount.removeAttribute("disabled")
+          selectCard.innerHTML ="Transferencia bancaria"
+          //validateModal()
+        }
+        
+        })
+    
+  ;
 
 //Genero validaciones necesarias para comprar con exito
 let cartForm = document.getElementById("cart-info")
@@ -146,14 +148,16 @@ cartForm.addEventListener("submit", function(e){
   let streetInput = document.getElementById("streetInput");
   let numberInput = document.getElementById("numberInput");
   let cornerInput = document.getElementById("cornerInput");
+  let seleccionar = document.getElementById("selectCard") 
   let infoMissing = false;
 
+console.log(seleccionar.textContent)
 
   //Quito las clases que marcan como inválidos
   streetInput.classList.remove('is-invalid');
   numberInput.classList.remove('is-invalid');
   cornerInput.classList.remove('is-invalid');
-
+  seleccionar.classList.remove('is-invalid');
   //Se realizan los controles necesarios,
   //En este caso se controla que se haya ingresado la calle, el numero y la esquina del envío
  
@@ -186,16 +190,51 @@ cartForm.addEventListener("submit", function(e){
   }
   
   // Consulto por validacion en el modal de forma de pago
+  if (seleccionar.textContent==="No has seleccionado")
+  {
+    seleccionar.classList.add('is-invalid');
+      infoMissing = true;
+  }
+
+
+  
+/* function validateModal(){
+numberCount.classList.remove("is-invalid")
+cardNumber.classList.remove("is-invalid")
+secureCode.classList.remove("is-invalid")
+expiration.classList.remove("is-invalid")
+if (numberCount.value === "")
+  {
+      numberCount.classList.add('is-invalid');
+      infoMissing = true;
+  }
+  if (cardNumber.value === "")
+  {
+      cardNumber.classList.add('is-invalid');
+      infoMissing = true;
+  }
+  if (secureCode.value === "")
+  {
+      secureCode.classList.add('is-invalid');
+      infoMissing = true;
+  }
+  if (expiration.value === "")
+  {
+      expiration.classList.add('is-invalid');
+      infoMissing = true;
+  }
+
+  }*/
   
   if(!infoMissing)
   {
       //Aquí ingresa si pasó los controles, irá a enviar
       //la solicitud para crear la publicación.
-
+      let MSG = "kike"
       getJSONData(CART_INFO_URL).then(function(resultObj){
           let msgToShowHTML = document.getElementById("resultSpan");
           let msgToShow = "";
-let MSG = "kike"
+
           //Si la publicación fue exitosa, devolverá mensaje de éxito,
           //de lo contrario, devolverá mensaje de error.
           //FUNCIONALIDAD NO IMPLEMENTADA

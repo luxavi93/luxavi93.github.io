@@ -112,7 +112,10 @@
           <span id="selectCard">No has seleccionado</span>
           <div class="row">
             <button type="button" class="m-1 btn btn-link" data-bs-toggle="modal"
-              data-bs-target="#contidionsModal">Seleccionar</button>
+              data-bs-target="#contidionsModal" id="select">Seleccionar</button>
+              <div class="invalid-feedback" >
+                Debes seleccionar una forma de pago 
+              </div>
           </div>
           <button class="btn btn-primary btn-lg d-flex justify-content-md-center" type="submit">Finalizar compra</button>
     </div>
@@ -140,7 +143,7 @@
       
       </div>
       <div class="modal-body">
-        <form class="form-check" id="formcheckModal">
+        <form class="form-check was-validated" id="formcheckModal">
           <div class="col-md-6 mb-3 ">          
             <input id="cardradio" name="publicationType" type="radio" class="custom-control-input form-check-input" 
               required="">
@@ -149,16 +152,25 @@
           <hr>
           <div class="col-md-6 mb-3">
             <label for="cardNumber">Número de tarjeta</label>
-            <input type="number" name="cardNumberInput" class="form-control" id="cardNumberInput" placeholder="" required="">
-           </div>
+            <input type="number" name="cardNumberInput" class="form-control" id="cardNumberInput" placeholder="" min="0" value="">
+            <div class="invalid-feedback">
+              Ingresa número de tarjeta
+            </div>
+          </div>
            <div class="col-md-3 mb-3">
             <label for="secureCode">Código de seguridad</label>
-            <input type="number" name="secureCodeInput" class="form-control" id="secureCodeInput" placeholder="" required="">
-           </div>
+            <input type="tel" maxlength="3" required name="secureCodeInput" class="form-control" id="secureCodeInput" placeholder="" min="0" value="">
+            <div class="invalid-feedback">
+              Ingresa codigo
+            </div>
+          </div>
            <div class="col-md-6 mb-3">
             <label for="expiration">Vencimiento(MM/AA)</label>
-            <input type="text" name="expirationInput" class="form-control" id="expirationInput" placeholder="" required="" >
-           </div>
+            <input type="date" name="expirationInput" class="form-control" id="expirationInput" placeholder="" min="0" value="" >
+            <div class="invalid-feedback">
+              Ingresa vencimiento
+            </div>
+          </div>
            <div class="col-md-6 mb-3  ">
             <input id="transferradio" name="publicationType" type="radio" class="custom-control-input form-check-input" 
               required="">
@@ -167,8 +179,11 @@
           <hr>
           <div class="col-md-6 mb-3">
             <label for="countNumber">Número de cuenta</label>
-            <input type="number" name="countNumberInput" class="form-control" id="countNumberInput" placeholder="" required="">
-           </div>
+            <input type="number" name="countNumberInput" class="form-control" id="countNumberInput" placeholder="" min="0" value="">
+            <div class="invalid-feedback">
+              Ingresa numero de cuenta
+            </div>
+          </div>
 
         </form>
       </div>
