@@ -15,17 +15,25 @@ function mostrarProductInfo (data) {
            <strong>Categorias</strong>
            <p>${data.category}</p>
           <strong>Cantidades de vendidos</strong>
-          <p>${data.soldCount}</p>
-          <strong>Imagenes Ilustrativas</strong>
-          <div class="card-group" style="width:500px ; height:500px ">
-                  <img src="${data.images[0]}" alt="" class="img-thumbnail">
-          </div>
-          
-          
+          <p>${data.soldCount}</p>         
             `
             document.getElementById("product-info").innerHTML = htmlContentToAppend;    
 }
 
+function mostrarImagenes(data){
+  let images =data;
+  let htmlContentToAppend =""
+  for(articulo of images){
+    htmlContentToAppend +=`
+             
+    <div class="card-group mr-5" style="width:300px ; height:300px ">
+    <img src="${articulo}" alt="" class="img-thumbnail">
+</div>
+
+    `
+    document.getElementById("product-img").innerHTML = htmlContentToAppend
+  }
+}
 
 function mostrarProductosRelacionados (data) {
     let products = data
@@ -52,29 +60,6 @@ function setRelatedProductsID(id) {
     window.location = "product-info.html"
 }
 
-/*let commentSubmit = document.getElementById("commentSubmit")
-let array =[];
-function showCommments(){
-  let htmlContentToAppend="";
-  if (localStorage.getItem("list")){
-    array = JSON.parse(localStorage.getItem("list"))
-    array.forEach(element => {
-      htmlContentToAppend += `<li class="list-group-item">${element}</li>`
-    });
-  } else {
-    localStorage.setItem("list", "");
-  }
-
-}
-
-document.addEventListener("DOMContentLoaded",function(e){
-commentSubmit.addEventListener("click", function(e){
-  e.preventDefault()
-  console.log(commentSubmit)
-
-})
-})*/
-
 const productComments = PRODUCT_INFO_COMMENTS_URL + obtenerID + EXT_TYPE
 console.log(productComments)
 
@@ -83,14 +68,10 @@ document.addEventListener("DOMContentLoaded",function(e){
   getJSONData(productInfo).then(function(resultObj){
       if (resultObj.status === "ok"){
          mostrarProductInfo(resultObj.data)
+         mostrarImagenes(resultObj.data.images)
+         mostrarProductosRelacionados (resultObj.data.relatedProducts)
       }
   })
-  getJSONData(productInfo).then(function(resultObj){
-    if (resultObj.status === "ok"){
-       mostrarProductosRelacionados (resultObj.data.relatedProducts)
-    }
-})
-
 
 })
 
